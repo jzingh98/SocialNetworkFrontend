@@ -7,6 +7,7 @@ import Register from './components/Administration/Register/Register';
 import Rank from './components/Home/Rank/Rank';
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import ViewProfile from "./components/Profile/ViewProfile/ViewProfile";
+import Connections from "./components/Connections/Connections/Connections";
 import { connect } from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {
@@ -93,6 +94,8 @@ class App extends Component {
 
                     {currentLoggedIn &&
                     <div>
+                        <Link className='f3 link dim black underline pa3 pointer' to="/home">Home</Link>
+                        <Link className='f3 link dim black underline pa3 pointer' to="/connections">Connections</Link>
                         <Link className='f3 link dim black underline pa3 pointer' to="/editprofile">Profile</Link>
                         <Link className='f3 link dim black underline pa3 pointer'
                               onClick={() => logOut(onChangeLoggedIn, onClearProfile)}
@@ -144,6 +147,19 @@ class App extends Component {
                                 currentProfile = {currentProfile}
                             />
 
+                        </div>
+                    </Route>
+
+
+                    <Route path="/connections">
+                        <div className="App">
+                            <Particles
+                                className='particles'
+                                params={particlesOptions}
+                            />
+                            <Connections
+                                test={10}
+                            />
                         </div>
                     </Route>
 

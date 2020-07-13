@@ -7,19 +7,15 @@ const logOut = (onChangeRoute, onChangeLoggedIn, onClearProfile) => {
     onChangeRoute('signin');
 };
 
-const Navigation = ({ onChangeRoute, currentLoggedIn, onChangeLoggedIn, onClearProfile, Router, Switch, Route, Link }) => {
+const Navigation = ({currentLoggedIn, Router, Link }) => {
     if (currentLoggedIn) {
         return (
 
             <Router>
                 <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    {/*<p onClick={() => onChangeRoute('profile')} className='f3 link dim black underline pa3 pointer'>Profile</p>*/}
-                    {/*<p onClick={() => logOut(onChangeRoute, onChangeLoggedIn, onClearProfile)} className='f3 link dim black underline pa3 pointer'>Sign Out</p>*/}
-
                     <Link to="/home">Home</Link>
+                    <Link to="/connections">Connections</Link>
                     <Link to="/editprofile">Edit Profile</Link>
-
-
                 </nav>
             </Router>
         );
@@ -27,9 +23,6 @@ const Navigation = ({ onChangeRoute, currentLoggedIn, onChangeLoggedIn, onClearP
         return (
             <Router>
                 <nav style={{display: 'flex', justifyContent: 'flex-end'}}>
-                    {/*<p onClick={() => onChangeRoute('signin')} className='f3 link dim black underline pa3 pointer'>Sign In</p>*/}
-                    {/*<p onClick={() => onChangeRoute('register')} className='f3 link dim black underline pa3 pointer'>Register</p>*/}
-
                     <Link to="/signin">Sign In</Link>
                     <Link to="/register">Register</Link>
                 </nav>
