@@ -179,7 +179,7 @@ class App extends Component {
                     </Route>
 
 
-                    <Route exact path="/viewprofile/:id" render={(props) =>
+                    <Route path="/viewprofile/:id" render={(props) =>
                         <div className="App">
                             <Particles
                                 className='particles'

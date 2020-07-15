@@ -1,5 +1,7 @@
 import React from 'react';
 import {searchMatchesGet} from "./SearchConnectionsHelper";
+import SearchConnectionsOutputItem from "./SearchConnectionsOutputItem";
+import SearchConnections from "./SearchConnections";
 
 
 class SearchConnectionsOutputList extends React.Component {
@@ -17,20 +19,17 @@ class SearchConnectionsOutputList extends React.Component {
                 .then(data => {
                     if (data) {
 
-
+                        let newArray = [];
+                        console.log("Starting Loop")
                         var updatedList = data.map(function(val, index){
-                            return {value: val.userName};
+                            console.log(val.userName);
+                            newArray.push(val.userName);
                         });
+                        console.log(newArray);
 
-                        var updatedArray = Object.values(updatedList);
-
-                        var updatedArray2 = Object.values(updatedArray);
-
-
-                        console.log(updatedArray2);
 
                         this.setState({
-                            listUsers: updatedArray2,
+                            listUsers: newArray,
                         })
                     } else {
                         console.log("Failed to retrieve");
@@ -43,14 +42,16 @@ class SearchConnectionsOutputList extends React.Component {
 
     render() {
         const listItems = this.state.listUsers.map((user) =>
-            <li>
-                {user}
-            </li>
+                <SearchConnectionsOutputItem
+                    key={user}
+                    userName={user}
+                />
+
         );
 
         return (
             <div>
-                <ul>{listItems}</ul>
+                {listItems}
             </div>
         );
     }
