@@ -1,4 +1,5 @@
 import React from 'react';
+import MyConnectionsList from './MyConnectionsList'
 
 class MyConnections extends React.Component {
     constructor(props) {
@@ -9,9 +10,19 @@ class MyConnections extends React.Component {
     }
 
     render() {
+        const {
+            currentProfile
+        } = this.props;
+
         return (
             <div>
                 <h2>My Connections</h2>
+
+                <MyConnectionsList
+                    currentProfile={currentProfile}
+                />
+
+
             </div>
         );
     }

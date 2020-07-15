@@ -17,6 +17,10 @@ class SearchConnections extends React.Component {
     };
 
     render() {
+        const {
+            currentProfile
+        } = this.props;
+
         return (
             <div>
                 <h2>Search Connections</h2>

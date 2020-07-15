@@ -158,7 +158,8 @@ class App extends Component {
                                 params={particlesOptions}
                             />
                             <Connections
-                                test={10}
+                                currentLoggedIn={currentLoggedIn}
+                                currentProfile={currentProfile}
                             />
                         </div>
                     </Route>
@@ -187,6 +188,8 @@ class App extends Component {
                             />
                             <ViewProfile {...props}
                                          id={props.match.params.id}
+                                         currentLoggedIn={currentLoggedIn}
+                                         currentProfile={currentProfile}
                             />
                         </div>
 

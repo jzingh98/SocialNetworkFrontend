@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { viewProfileGet } from "./ViewProfileHelper";
-import {REQUEST_VIEW_PROFILE_FAILED, REQUEST_VIEW_PROFILE_SUCCESS} from "../../Redux/constants";
+import { viewProfileGet, connectionStatusGet, formConnection, deleteConnection } from "./ViewProfileHelper";
+
 
 class ViewProfile extends React.Component {
 
@@ -10,19 +10,23 @@ class ViewProfile extends React.Component {
         lastName: "",
         userName: "",
         city: "",
-        bio: ""
+        bio: "",
+        connectedToViewer: false
     };
 
     constructor(props) {
         super(props);
         console.log(props.id);
+        if(this.props.currentLoggedIn) {
+            this.getConnectionStatus();
+        }
+
     }
 
     componentDidMount() {
         viewProfileGet(this.props.id)
             .then(data => {
                 if (data.id) {
-                    console.log(data);
                     this.setState({
                         firstName: data.firstName,
                         lastName: data.lastName,
@@ -37,14 +41,87 @@ class ViewProfile extends React.Component {
             .catch(error => console.log(error));
     }
 
+    getConnectionStatus() {
+        let fromuser = this.props.currentProfile.userName;
+        let touser = this.props.id;
+        connectionStatusGet(fromuser, touser)
+            .then(data => {
+                console.log("Connection Status");
+                console.log(data);
+                this.setState(
+                    {connectedToViewer: data}
+                )
+            })
+            .catch(error => console.log(error));
+    }
+
+    addConnection = () => {
+        console.log("added");
+        this.setState({
+            connectedToViewer: true
+        });
+        let fromuser = this.props.currentProfile.userName;
+        let touser = this.props.id;
+        formConnection(fromuser, touser)
+            .then(data => {
+                console.log("Connection Formed");
+                console.log(data);
+            })
+            .catch(error => console.log(error));
+
+
+    };
+
+    removeConnection = () => {
+        console.log("removed");
+        this.setState({
+            connectedToViewer: false
+        });
+        let fromuser = this.props.currentProfile.userName;
+        let touser = this.props.id;
+        deleteConnection(fromuser, touser)
+            .then(data => {
+                console.log("Connection Deleted");
+                console.log(data);
+            })
+            .catch(error => console.log(error));
+    };
 
     render() {
+        const {
+            currentLoggedIn,
+            currentProfile,
+        } = this.props;
+
+        const {
+            connectedToViewer
+        } = this.state;
+
+
         return (
             <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
                 <main className="pa4 black-80">
                     <div className="measure">
                         <div id="sign_up" className="ba b--transparent ph0 mh0">
                             <legend className="f1 fw6 ph0 mh0">View Profile</legend>
+
+
+                            {(currentLoggedIn && connectedToViewer) &&
+                            <div>
+                                <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                                    <div onClick={this.removeConnection}>Remove </div>
+                                </div>
+                            </div>
+                            }
+
+                            {(currentLoggedIn && !connectedToViewer) &&
+                            <div>
+                                <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                                    <div onClick={this.addConnection}>Connect </div>
+                                </div>
+                            </div>
+                            }
+
 
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="name">First Name</label>
@@ -79,10 +156,6 @@ class ViewProfile extends React.Component {
                                 </p>
                             </div>
 
-                        </div>
-
-                        <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
-                            <Link to="/home">Back </Link>
                         </div>
 
                     </div>

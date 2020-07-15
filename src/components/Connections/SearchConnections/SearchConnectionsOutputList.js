@@ -1,7 +1,6 @@
 import React from 'react';
 import {searchMatchesGet} from "./SearchConnectionsHelper";
 import SearchConnectionsOutputItem from "./SearchConnectionsOutputItem";
-import SearchConnections from "./SearchConnections";
 
 
 class SearchConnectionsOutputList extends React.Component {
@@ -41,6 +40,7 @@ class SearchConnectionsOutputList extends React.Component {
 
 
     render() {
+
         const listItems = this.state.listUsers.map((user) =>
                 <SearchConnectionsOutputItem
                     key={user}
