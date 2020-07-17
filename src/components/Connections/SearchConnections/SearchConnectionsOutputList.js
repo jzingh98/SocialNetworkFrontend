@@ -1,5 +1,5 @@
 import React from 'react';
-import {searchMatchesGet} from "./SearchConnectionsHelper";
+import {searchMatchesGet, searchMyMatchesGet} from "./SearchConnectionsHelper";
 import SearchConnectionsOutputItem from "./SearchConnectionsOutputItem";
 
 
@@ -7,7 +7,8 @@ class SearchConnectionsOutputList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            listUsers: []
+            listUsers: [],
+            listMatchedConnections: []
         }
     };
 
@@ -17,16 +18,10 @@ class SearchConnectionsOutputList extends React.Component {
             searchMatchesGet(this.props.searchTerm)
                 .then(data => {
                     if (data) {
-
                         let newArray = [];
-                        console.log("Starting Loop")
                         var updatedList = data.map(function(val, index){
-                            console.log(val.userName);
                             newArray.push(val.userName);
                         });
-                        console.log(newArray);
-
-
                         this.setState({
                             listUsers: newArray,
                         })
@@ -35,19 +30,45 @@ class SearchConnectionsOutputList extends React.Component {
                     }
                 })
                 .catch(error => console.log(error));
+
+
+            searchMyMatchesGet(this.props.searchTerm)
+                .then(data => {
+                    if (data) {
+                        let newMatchedArray = [];
+                        var updatedMatchedList = data.map(function(val, index){
+                            newMatchedArray.push(val.userName);
+                        });
+                        this.setState({
+                            listMatchedConnections: newMatchedArray,
+                        })
+                        console.log(newMatchedArray);
+                    } else {
+                        console.log("Failed to retrieve matches");
+                    }
+                })
+                .catch(error => console.log(error));
+
+
         }
     }
 
 
     render() {
 
-        const listItems = this.state.listUsers.map((user) =>
+        const listItems = this.state.listUsers.map((user) => {
+            let isConnected = this.state.listMatchedConnections.includes(user);
+            return(
                 <SearchConnectionsOutputItem
                     key={user}
                     userName={user}
+                    isConnected={isConnected}
                 />
+            );
+        });
 
-        );
+
+
 
         return (
             <div>
