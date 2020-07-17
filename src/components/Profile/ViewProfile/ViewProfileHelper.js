@@ -54,3 +54,19 @@ export function deleteConnection(fromuser, touser) {
 }
 
 
+
+export function changeConnectionType(fromuser, touser, typeconn) {
+    return fetch('http://localhost:3001/updateconnectiontype/', {
+        method: 'put',
+        headers: {'Content-Type': 'application/json'},
+
+        body: JSON.stringify({
+            fromuser: fromuser,
+            touser: touser,
+            type: typeconn
+        })
+    })
+        .then(response => response.json())
+}
+
+

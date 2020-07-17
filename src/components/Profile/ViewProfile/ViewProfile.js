@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { viewProfileGet, connectionStatusGet, formConnection, deleteConnection } from "./ViewProfileHelper";
+import { viewProfileGet, connectionStatusGet, formConnection, deleteConnection, changeConnectionType} from "./ViewProfileHelper";
 
 
 class ViewProfile extends React.Component {
@@ -11,7 +11,8 @@ class ViewProfile extends React.Component {
         userName: "",
         city: "",
         bio: "",
-        connectedToViewer: false
+        connectedToViewer: false,
+        connectionType: "na"
     };
 
     constructor(props) {
@@ -48,9 +49,13 @@ class ViewProfile extends React.Component {
             .then(data => {
                 console.log("Connection Status");
                 console.log(data);
-                this.setState(
-                    {connectedToViewer: data}
-                )
+                if(data) {
+                    this.setState({
+                        connectedToViewer: true,
+                        connectionType: data.type
+                    })
+                }
+
             })
             .catch(error => console.log(error));
     }
@@ -87,6 +92,29 @@ class ViewProfile extends React.Component {
             .catch(error => console.log(error));
     };
 
+    updateConnectionType = (typeconn) => {
+        console.log("udpated");
+        this.setState({
+            connectionType: typeconn
+        });
+        let fromuser = this.props.currentProfile.userName;
+        let touser = this.props.id;
+        changeConnectionType(fromuser, touser, typeconn)
+            .then(data => {
+                console.log("Connection Updated");
+                console.log(data);
+            })
+            .catch(error => console.log(error));
+    };
+
+    toFriend = () => {
+        this.updateConnectionType("friend");
+    };
+
+    toOther = () => {
+        this.updateConnectionType("other");
+    };
+
     render() {
         const {
             currentLoggedIn,
@@ -110,6 +138,14 @@ class ViewProfile extends React.Component {
                             <div>
                                 <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
                                     <div onClick={this.removeConnection}>Remove </div>
+                                    <p>{this.state.connectionType}</p>
+                                </div>
+
+                                <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                                    <div onClick={this.toFriend}>Friend </div>
+                                </div>
+                                <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                                    <div onClick={this.toOther}>Other </div>
                                 </div>
                             </div>
                             }
