@@ -1,5 +1,5 @@
 import React from 'react';
-import {searchMatchesGet, searchMyMatchesGet} from "./SearchConnectionsHelper";
+import {callSearchUsers, callHighlightConnections} from "./SearchConnectionsHelper";
 import SearchConnectionsOutputItem from "./SearchConnectionsOutputItem";
 
 
@@ -15,41 +15,37 @@ class SearchConnectionsOutputList extends React.Component {
     componentDidUpdate(prevProps) {
 
         if (this.props.searchTerm !== prevProps.searchTerm) {
-            searchMatchesGet(this.props.searchTerm)
+            callSearchUsers(this.props.searchTerm)
                 .then(data => {
                     if (data) {
                         let newArray = [];
-                        var updatedList = data.map(function(val, index){
+                        data.map(function(val, index){
                             newArray.push(val.userName);
                         });
                         this.setState({
                             listUsers: newArray,
-                        })
+                        });
                     } else {
-                        console.log("Failed to retrieve");
+                        console.log("Failed to retrieve searches");
                     }
                 })
                 .catch(error => console.log(error));
 
-
-            searchMyMatchesGet(this.props.searchTerm)
+            callHighlightConnections(this.props.searchTerm)
                 .then(data => {
                     if (data) {
                         let newMatchedArray = [];
-                        var updatedMatchedList = data.map(function(val, index){
+                        data.map(function(val, index){
                             newMatchedArray.push(val.userName);
                         });
                         this.setState({
                             listMatchedConnections: newMatchedArray,
-                        })
-                        console.log(newMatchedArray);
+                        });
                     } else {
-                        console.log("Failed to retrieve matches");
+                        console.log("Failed to retrieve highlights");
                     }
                 })
                 .catch(error => console.log(error));
-
-
         }
     }
 

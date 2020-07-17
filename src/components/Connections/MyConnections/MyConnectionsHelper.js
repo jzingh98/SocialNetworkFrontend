@@ -1,6 +1,5 @@
 
-export function myConnectionsGet(userName) {
-
+export function callSearchConnections(userName) {
     return fetch('http://localhost:3001/searchconnections/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -9,5 +8,4 @@ export function myConnectionsGet(userName) {
         })
     })
         .then(response => response.json())
-
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import { viewProfileGet, connectionStatusGet, formConnection, deleteConnection, changeConnectionType} from "./ViewProfileHelper";
+import { callViewProfile, callConnectionStatus, callAddConnection, callDeleteConnection, callUpdateConnectionType} from "./ViewProfileHelper";
 
 
 class ViewProfile extends React.Component {
@@ -17,7 +17,6 @@ class ViewProfile extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props.id);
         if(this.props.currentLoggedIn) {
             this.getConnectionStatus();
         }
@@ -25,7 +24,7 @@ class ViewProfile extends React.Component {
     }
 
     componentDidMount() {
-        viewProfileGet(this.props.id)
+        callViewProfile(this.props.id)
             .then(data => {
                 if (data.id) {
                     this.setState({
@@ -36,7 +35,7 @@ class ViewProfile extends React.Component {
                         bio: data.bio
                     })
                 } else {
-                    console.log("Failed to retrieve");
+                    console.log("Failed to retrieve profile");
                 }
             })
             .catch(error => console.log(error));
@@ -45,64 +44,64 @@ class ViewProfile extends React.Component {
     getConnectionStatus() {
         let fromuser = this.props.currentProfile.userName;
         let touser = this.props.id;
-        connectionStatusGet(fromuser, touser)
+        callConnectionStatus(fromuser, touser)
             .then(data => {
-                console.log("Connection Status");
-                console.log(data);
                 if(data) {
                     this.setState({
                         connectedToViewer: true,
                         connectionType: data.type
                     })
+                } else {
+                    console.log("Not a connection");
                 }
-
             })
             .catch(error => console.log(error));
     }
 
     addConnection = () => {
-        console.log("added");
-        this.setState({
-            connectedToViewer: true
-        });
         let fromuser = this.props.currentProfile.userName;
         let touser = this.props.id;
-        formConnection(fromuser, touser)
+        callAddConnection(fromuser, touser)
             .then(data => {
-                console.log("Connection Formed");
-                console.log(data);
-            })
-            .catch(error => console.log(error));
-
-
-    };
-
-    removeConnection = () => {
-        console.log("removed");
-        this.setState({
-            connectedToViewer: false
-        });
-        let fromuser = this.props.currentProfile.userName;
-        let touser = this.props.id;
-        deleteConnection(fromuser, touser)
-            .then(data => {
-                console.log("Connection Deleted");
-                console.log(data);
+                if(data) {
+                    this.setState({
+                        connectedToViewer: true
+                    });
+                } else {
+                    console.log("Failed to add connection");
+                }
             })
             .catch(error => console.log(error));
     };
 
-    updateConnectionType = (typeconn) => {
-        console.log("udpated");
-        this.setState({
-            connectionType: typeconn
-        });
+    deleteConnection = () => {
         let fromuser = this.props.currentProfile.userName;
         let touser = this.props.id;
-        changeConnectionType(fromuser, touser, typeconn)
+        callDeleteConnection(fromuser, touser)
             .then(data => {
-                console.log("Connection Updated");
-                console.log(data);
+                if(data) {
+                    this.setState({
+                        connectedToViewer: false
+                    });
+                } else {
+                    console.log("Failed to remove connection");
+                }
+            })
+            .catch(error => console.log(error));
+    };
+
+    updateConnectionType = (type) => {
+        let fromuser = this.props.currentProfile.userName;
+        let touser = this.props.id;
+        callUpdateConnectionType(fromuser, touser, type)
+            .then(data => {
+                if(data) {
+                    this.setState({
+                        connectionType: type
+                    });
+                } else {
+                    console.log("Failed to update connection type");
+                }
             })
             .catch(error => console.log(error));
     };
@@ -137,7 +136,7 @@ class ViewProfile extends React.Component {
                             {(currentLoggedIn && connectedToViewer) &&
                             <div>
                                 <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
-                                    <div onClick={this.removeConnection}>Remove </div>
+                                    <div onClick={this.deleteConnection}>Remove </div>
                                     <p>{this.state.connectionType}</p>
                                 </div>
 

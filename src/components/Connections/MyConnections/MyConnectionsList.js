@@ -1,6 +1,6 @@
 import React from 'react';
 import MyConnectionsItem from "./MyConnectionsItem";
-import {myConnectionsGet} from "./MyConnectionsHelper";
+import {callSearchConnections} from "./MyConnectionsHelper";
 
 
 class MyConnectionsList extends React.Component {
@@ -8,31 +8,24 @@ class MyConnectionsList extends React.Component {
         super(props);
         this.state = {
             listUsers: []
-        }
+        };
         this.retrieveConnections();
     };
 
 
     retrieveConnections() {
-        myConnectionsGet(this.props.currentProfile.userName)
+        callSearchConnections(this.props.currentProfile.userName)
             .then(data => {
                 if (data) {
-
                     let newArray = [];
-                    console.log("Starting Loop");
-                    console.log(data);
-                    var updatedList = data.map(function(val, index){
-                        console.log(val.touser);
+                    data.map(function(val, index){
                         newArray.push(val.touser);
                     });
-                    console.log(newArray);
-
-
                     this.setState({
                         listUsers: newArray,
                     })
                 } else {
-                    console.log("Failed to retrieve");
+                    console.log("Failed to retrieve search");
                 }
             })
             .catch(error => console.log(error));
@@ -46,7 +39,6 @@ class MyConnectionsList extends React.Component {
                 key={user}
                 userName={user}
             />
-
         );
 
         return (

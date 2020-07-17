@@ -1,6 +1,5 @@
 
-export function viewProfileGet(userName) {
-
+export function callViewProfile(userName) {
     return fetch('http://localhost:3001/viewprofile/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -9,11 +8,10 @@ export function viewProfileGet(userName) {
         })
     })
         .then(response => response.json())
-
 }
 
 
-export function connectionStatusGet(fromuser, touser) {
+export function callConnectionStatus(fromuser, touser) {
     return fetch('http://localhost:3001/connectionstatus/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -26,7 +24,7 @@ export function connectionStatusGet(fromuser, touser) {
 }
 
 
-export function formConnection(fromuser, touser) {
+export function callAddConnection(fromuser, touser) {
     return fetch('http://localhost:3001/addconnection/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -41,7 +39,7 @@ export function formConnection(fromuser, touser) {
 
 
 
-export function deleteConnection(fromuser, touser) {
+export function callDeleteConnection(fromuser, touser) {
     return fetch('http://localhost:3001/deleteconnection/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -55,7 +53,7 @@ export function deleteConnection(fromuser, touser) {
 
 
 
-export function changeConnectionType(fromuser, touser, typeconn) {
+export function callUpdateConnectionType(fromuser, touser, type) {
     return fetch('http://localhost:3001/updateconnectiontype/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -63,7 +61,7 @@ export function changeConnectionType(fromuser, touser, typeconn) {
         body: JSON.stringify({
             fromuser: fromuser,
             touser: touser,
-            type: typeconn
+            type: type
         })
     })
         .then(response => response.json())

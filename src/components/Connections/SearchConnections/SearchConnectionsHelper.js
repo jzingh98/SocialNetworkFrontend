@@ -1,6 +1,5 @@
 
-export function searchMatchesGet(searchTerm) {
-
+export function callSearchUsers(searchTerm) {
     return fetch('http://localhost:3001/searchusers/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
@@ -9,12 +8,10 @@ export function searchMatchesGet(searchTerm) {
         })
     })
         .then(response => response.json())
-
 }
 
-export function searchMyMatchesGet(searchTerm) {
-
-    return fetch('http://localhost:3001/matchconnections/', {
+export function callHighlightConnections(searchTerm) {
+    return fetch('http://localhost:3001/highlightconnections/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -22,5 +19,4 @@ export function searchMyMatchesGet(searchTerm) {
         })
     })
         .then(response => response.json())
-
 }
