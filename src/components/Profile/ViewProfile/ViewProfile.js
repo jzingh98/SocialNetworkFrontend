@@ -12,7 +12,7 @@ class ViewProfile extends React.Component {
         city: "",
         bio: "",
         connectedToViewer: false,
-        connectionType: "na"
+        connectionType: ""
     };
 
     constructor(props) {
