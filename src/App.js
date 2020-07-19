@@ -8,6 +8,7 @@ import Rank from './components/Home/Rank/Rank';
 import EditProfile from "./components/Profile/EditProfile/EditProfile";
 import ViewProfile from "./components/Profile/ViewProfile/ViewProfile";
 import Connections from "./components/Connections/Connections/Connections";
+import Events from "./components/Events/Events";
 import { connect } from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import {
@@ -17,6 +18,7 @@ import {
         requestRegisterProfile,
         requestEditProfile,
     } from './components/Redux/actions'
+
 
 
 
@@ -143,7 +145,8 @@ class App extends Component {
                                 className='particles'
                                 params={particlesOptions}
                             />
-                            <Rank
+                            <Events
+                                currentLoggedIn={currentLoggedIn}
                                 currentProfile = {currentProfile}
                             />
 

@@ -32,13 +32,14 @@ class Events extends React.Component {
 
             return (
                 <div>
-                    <h2>Events</h2>
+                    <h2>Home</h2>
 
                     <EventsCreate
+                        currentProfile={currentProfile}
                     />
 
-                    <EventsList
-                    />
+                    {/*<EventsList*/}
+                    {/*/>*/}
 
                 </div>
             );
