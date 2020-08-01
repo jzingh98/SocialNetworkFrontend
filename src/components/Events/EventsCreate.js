@@ -1,4 +1,5 @@
 import React from 'react';
+import {callCreateEvent} from "./EventsHelper";
 
 class Register extends React.Component {
     constructor(props) {
@@ -15,27 +16,27 @@ class Register extends React.Component {
     }
 
     onNameChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({eventName: event.target.value})
     };
 
     onInvitedChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({eventInvited: event.target.value})
     };
 
     onLocationChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({eventLocation: event.target.value})
     };
 
     onTimeChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({eventTime: event.target.value})
     };
 
     onDetailsChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({eventDetails: event.target.value})
     };
 
     onDurationChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({eventDuration: event.target.value})
     };
 
 
@@ -45,15 +46,24 @@ class Register extends React.Component {
 
     onRegisterEvent = () => {
         const eventInfo = {
-            eventName: this.state.eventName,
-            eventHost: this.props.currentProfile.userName,
-            eventInvited: this.state.eventInvited,
-            eventLocation: this.state.eventLocation,
-            eventTime: this.state.eventTime,
-            eventDetails: this.state.eventDetails,
-            eventDuration: this.state.eventDuration
-
+            name: this.state.eventName,
+            host: this.props.currentProfile.userName,
+            invited: this.state.eventInvited,
+            location: this.state.eventLocation,
+            time: this.state.eventTime,
+            details: this.state.eventDetails,
+            duration: this.state.eventDuration,
         };
+
+        callCreateEvent(eventInfo)
+            .then(data => {
+                if (data) {
+                    console.log(data);
+                } else {
+                    console.log("Failed to retrieve searches");
+                }
+            })
+            .catch(error => console.log(error));
 
 
     };
@@ -92,9 +102,9 @@ class Register extends React.Component {
                                 <label className="db fw6 lh-copy f6" htmlFor="password">Time</label>
                                 <input
                                     className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
-                                    type="password"
-                                    name="password"
-                                    id="password"
+                                    type="text"
+                                    name="name"
+                                    id="name"
                                     onChange={this.onTimeChange}
                                 />
                             </div>
