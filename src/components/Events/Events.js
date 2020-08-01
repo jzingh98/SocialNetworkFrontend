@@ -12,7 +12,6 @@ class Events extends React.Component {
         }
     };
 
-
     render() {
         const {
             currentLoggedIn,
@@ -38,8 +37,9 @@ class Events extends React.Component {
                         currentProfile={currentProfile}
                     />
 
-                    {/*<EventsList*/}
-                    {/*/>*/}
+                    <EventsList
+                        currentProfile={currentProfile}
+                    />
 
                 </div>
             );

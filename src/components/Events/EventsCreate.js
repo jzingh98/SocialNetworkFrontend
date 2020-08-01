@@ -1,5 +1,5 @@
 import React from 'react';
-import {callCreateEvent} from "./EventsHelper";
+import {callCreateEvent, callRetrieveEvents} from "./EventsHelper";
 
 class Register extends React.Component {
     constructor(props) {
@@ -54,19 +54,18 @@ class Register extends React.Component {
             details: this.state.eventDetails,
             duration: this.state.eventDuration,
         };
-
         callCreateEvent(eventInfo)
             .then(data => {
                 if (data) {
                     console.log(data);
                 } else {
-                    console.log("Failed to retrieve searches");
+                    console.log("Failed to post event");
                 }
             })
             .catch(error => console.log(error));
 
-
     };
+
 
 
 
