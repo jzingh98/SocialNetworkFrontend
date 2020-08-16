@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
 class Register extends React.Component {
     constructor(props) {
@@ -56,7 +57,6 @@ class Register extends React.Component {
         };
         this.props.onRequestRegisterProfile(profileInfo);
         this.props.onChangeLoggedIn(true);
-        this.props.onChangeRoute('home');
     };
 
 
@@ -142,12 +142,9 @@ class Register extends React.Component {
 
                         </fieldset>
                         <div className="">
-                            <input
-                                onClick={this.onRegisterProfile}
-                                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib"
-                                type="submit"
-                                value="Register"
-                            />
+                            <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
+                                <Link onClick={this.onRegisterProfile} to="/home">Register</Link>
+                            </div>
                         </div>
                     </div>
                 </main>

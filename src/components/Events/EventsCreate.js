@@ -1,5 +1,5 @@
 import React from 'react';
-import {callCreateEvent, callRetrieveEvents} from "./EventsHelper";
+import {callCreateEvent} from "./EventsHelper";
 
 class Register extends React.Component {
     constructor(props) {
@@ -12,7 +12,7 @@ class Register extends React.Component {
             eventTime: '',
             eventDetails: '',
             eventDuration: ''
-        }
+        };
     }
 
     onNameChange = (event) => {
@@ -58,6 +58,7 @@ class Register extends React.Component {
             .then(data => {
                 if (data) {
                     console.log(data);
+                    this.props.onRetrieveEvents();
                 } else {
                     console.log("Failed to post event");
                 }
