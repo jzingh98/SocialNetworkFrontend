@@ -47,7 +47,7 @@ class Register extends React.Component {
     onRegisterEvent = () => {
         const eventInfo = {
             name: this.state.eventName,
-            host: this.props.currentProfile.userName,
+            host: this.props.currentProfile.username,
             invited: this.state.eventInvited,
             location: this.state.eventLocation,
             time: this.state.eventTime,

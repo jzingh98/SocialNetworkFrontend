@@ -7,9 +7,9 @@ class EditProfile extends React.Component {
         super(props);
         this.state = {
             email: this.props.currentProfile.email,
-            firstName: this.props.currentProfile.firstName,
-            lastName: this.props.currentProfile.lastName,
-            userName: this.props.currentProfile.userName,
+            firstname: this.props.currentProfile.firstname,
+            lastname: this.props.currentProfile.lastname,
+            username: this.props.currentProfile.username,
             city: this.props.currentProfile.city,
             bio: this.props.currentProfile.bio,
             Link: this.props.Link
@@ -17,16 +17,16 @@ class EditProfile extends React.Component {
 
     }
 
-    onFirstNameChange = (event) => {
-        this.setState({firstName: event.target.value})
+    onfirstnameChange = (event) => {
+        this.setState({firstname: event.target.value})
     };
 
-    onLastNameChange = (event) => {
-        this.setState({lastName: event.target.value})
+    onlastnameChange = (event) => {
+        this.setState({lastname: event.target.value})
     };
 
-    onUserNameChange = (event) => {
-        this.setState({userName: event.target.value})
+    onusernameChange = (event) => {
+        this.setState({username: event.target.value})
     };
 
     onCityChange = (event) => {
@@ -50,9 +50,9 @@ class EditProfile extends React.Component {
     onRefreshState = () => {
         this.state = {
             email: this.props.currentProfile.email,
-            firstName: this.props.currentProfile.firstName,
-            lastName: this.props.currentProfile.lastName,
-            userName: this.props.currentProfile.userName,
+            firstname: this.props.currentProfile.firstname,
+            lastname: this.props.currentProfile.lastname,
+            username: this.props.currentProfile.username,
             city: this.props.currentProfile.city,
             bio: this.props.currentProfile.bio
         }
@@ -75,8 +75,8 @@ class EditProfile extends React.Component {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={this.state.firstName}
-                                    onChange={this.onFirstNameChange}
+                                    value={this.state.firstname}
+                                    onChange={this.onfirstnameChange}
                                 />
                             </div>
                             <div className="mt3">
@@ -86,19 +86,19 @@ class EditProfile extends React.Component {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={this.state.lastName}
-                                    onChange={this.onLastNameChange}
+                                    value={this.state.lastname}
+                                    onChange={this.onlastnameChange}
                                 />
                             </div>
                             <div className="mt3">
-                                <label className="db fw6 lh-copy f6" htmlFor="name">Username</label>
+                                <label className="db fw6 lh-copy f6" htmlFor="name">username</label>
                                 <input
                                     className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                                     type="text"
                                     name="name"
                                     id="name"
-                                    value={this.state.userName}
-                                    onChange={this.onUserNameChange}
+                                    value={this.state.username}
+                                    onChange={this.onusernameChange}
                                 />
                             </div>
                             <div className="mt3">
@@ -123,6 +123,7 @@ class EditProfile extends React.Component {
                                     onChange={this.onBioChange}
                                 />
                             </div>
+
 
                         </fieldset>
 

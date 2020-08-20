@@ -20,7 +20,7 @@ class SearchConnectionsOutputList extends React.Component {
                     if (data) {
                         let newArray = [];
                         data.map(function(val, index){
-                            newArray.push(val.userName);
+                            newArray.push(val.username);
                         });
                         this.setState({
                             listUsers: newArray,
@@ -36,7 +36,7 @@ class SearchConnectionsOutputList extends React.Component {
                     if (data) {
                         let newMatchedArray = [];
                         data.map(function(val, index){
-                            newMatchedArray.push(val.userName);
+                            newMatchedArray.push(val.username);
                         });
                         this.setState({
                             listMatchedConnections: newMatchedArray,
@@ -57,7 +57,7 @@ class SearchConnectionsOutputList extends React.Component {
             return(
                 <SearchConnectionsOutputItem
                     key={user}
-                    userName={user}
+                    username={user}
                     isConnected={isConnected}
                 />
             );

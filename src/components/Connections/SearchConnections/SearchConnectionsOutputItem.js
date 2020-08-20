@@ -14,9 +14,9 @@ class SearchConnectionsOutputItem extends React.Component {
 
     render() {
 
-        const { userName, isConnected } = this.props;
+        const { username, isConnected } = this.props;
 
-        const viewProfileURL = "/viewprofile/".concat(userName);
+        const viewProfileURL = "/viewprofile/".concat(username);
 
         return (
             <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
@@ -24,7 +24,7 @@ class SearchConnectionsOutputItem extends React.Component {
                     <div className="measure">
 
                         <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
-                            <Link to={viewProfileURL}>{userName}</Link>
+                            <Link to={viewProfileURL}>{username}</Link>
 
                             {isConnected &&
                             <p>Connected</p>

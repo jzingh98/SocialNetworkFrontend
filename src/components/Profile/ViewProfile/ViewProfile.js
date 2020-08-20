@@ -6,9 +6,9 @@ import { callViewProfile, callConnectionStatus, callAddConnection, callDeleteCon
 class ViewProfile extends React.Component {
 
     state = {
-        firstName: "",
-        lastName: "",
-        userName: "",
+        firstname: "",
+        lastname: "",
+        username: "",
         city: "",
         bio: "",
         connectedToViewer: false,
@@ -28,9 +28,9 @@ class ViewProfile extends React.Component {
             .then(data => {
                 if (data.id) {
                     this.setState({
-                        firstName: data.firstName,
-                        lastName: data.lastName,
-                        userName: data.userName,
+                        firstname: data.firstname,
+                        lastname: data.lastname,
+                        username: data.username,
                         city: data.city,
                         bio: data.bio
                     })
@@ -42,7 +42,7 @@ class ViewProfile extends React.Component {
     }
 
     getConnectionStatus() {
-        let fromuser = this.props.currentProfile.userName;
+        let fromuser = this.props.currentProfile.username;
         let touser = this.props.id;
         callConnectionStatus(fromuser, touser)
             .then(data => {
@@ -59,7 +59,7 @@ class ViewProfile extends React.Component {
     }
 
     addConnection = () => {
-        let fromuser = this.props.currentProfile.userName;
+        let fromuser = this.props.currentProfile.username;
         let touser = this.props.id;
         callAddConnection(fromuser, touser)
             .then(data => {
@@ -75,7 +75,7 @@ class ViewProfile extends React.Component {
     };
 
     deleteConnection = () => {
-        let fromuser = this.props.currentProfile.userName;
+        let fromuser = this.props.currentProfile.username;
         let touser = this.props.id;
         callDeleteConnection(fromuser, touser)
             .then(data => {
@@ -91,7 +91,7 @@ class ViewProfile extends React.Component {
     };
 
     updateConnectionType = (type) => {
-        let fromuser = this.props.currentProfile.userName;
+        let fromuser = this.props.currentProfile.username;
         let touser = this.props.id;
         callUpdateConnectionType(fromuser, touser, type)
             .then(data => {
@@ -161,21 +161,21 @@ class ViewProfile extends React.Component {
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="name">First Name</label>
                                 <p className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100">
-                                    {this.state.firstName}
+                                    {this.state.firstname}
                                 </p>
 
                             </div>
                             <div className="mt3">
                                 <label className="db fw6 lh-copy f6" htmlFor="name">Last Name</label>
                                 <p className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100">
-                                    {this.state.lastName}
+                                    {this.state.lastname}
                                 </p>
 
                             </div>
                             <div className="mt3">
-                                <label className="db fw6 lh-copy f6" htmlFor="name">Username</label>
+                                <label className="db fw6 lh-copy f6" htmlFor="name">username</label>
                                 <p className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100">
-                                    {this.state.userName}
+                                    {this.state.username}
                                 </p>
                             </div>
                             <div className="mt3">

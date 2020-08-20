@@ -1,10 +1,10 @@
 
-export function callViewProfile(userName) {
+export function callViewProfile(username) {
     return fetch('http://localhost:3001/viewprofile/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            userName: userName
+            username: username
         })
     })
         .then(response => response.json())

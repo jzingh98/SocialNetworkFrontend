@@ -17,14 +17,14 @@ export function callCreateEvent(eventInfo) {
 }
 
 
-export function callRetrieveEvents(userName) {
+export function callRetrieveEvents(username) {
     console.log("XXXX");
-    console.log(userName);
+    console.log(username);
     return fetch('http://localhost:3001/eventretrieve/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            userName: userName,
+            username: username,
         })
     })
         .then(response => response.json())

@@ -7,9 +7,9 @@ class Register extends React.Component {
         this.state = {
             email: '',
             password: '',
-            userName: '',
-            firstName: '',
-            lastName: '',
+            username: '',
+            firstname: '',
+            lastname: '',
             city: '',
             bio: ''
         }
@@ -23,16 +23,16 @@ class Register extends React.Component {
         this.setState({password: event.target.value})
     }
 
-    onUserNameChange = (event) => {
-        this.setState({userName: event.target.value})
+    onusernameChange = (event) => {
+        this.setState({username: event.target.value})
     }
 
-    onFirstNameChange = (event) => {
-        this.setState({firstName: event.target.value})
+    onfirstnameChange = (event) => {
+        this.setState({firstname: event.target.value})
     }
 
-    onLastNameChange = (event) => {
-        this.setState({lastName: event.target.value})
+    onlastnameChange = (event) => {
+        this.setState({lastname: event.target.value})
     }
 
     onCityChange = (event) => {
@@ -49,9 +49,9 @@ class Register extends React.Component {
         const profileInfo = {
             email: this.state.email,
             password: this.state.password,
-            userName: this.state.userName,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
+            username: this.state.username,
+            firstname: this.state.firstname,
+            lastname: this.state.lastname,
             city: this.state.city,
             bio: this.state.bio
         };
@@ -76,7 +76,7 @@ class Register extends React.Component {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    onChange={this.onFirstNameChange}
+                                    onChange={this.onfirstnameChange}
                                 />
                             </div>
                             <div className="mt3">
@@ -86,17 +86,17 @@ class Register extends React.Component {
                                     type="text"
                                     name="name"
                                     id="name"
-                                    onChange={this.onLastNameChange}
+                                    onChange={this.onlastnameChange}
                                 />
                             </div>
                             <div className="mt3">
-                                <label className="db fw6 lh-copy f6" htmlFor="name">Username</label>
+                                <label className="db fw6 lh-copy f6" htmlFor="name">username</label>
                                 <input
                                     className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
                                     type="text"
                                     name="name"
                                     id="name"
-                                    onChange={this.onUserNameChange}
+                                    onChange={this.onusernameChange}
                                 />
                             </div>
                             <div className="mt3">

@@ -40,9 +40,9 @@ const initialProfileState = {
     isRegistering: false,
     isEditing: false,
     email: "",
-    userName: "",
-    firstName: "",
-    lastName: "",
+    username: "",
+    firstname: "",
+    lastname: "",
     city: "",
     bio: ""
 };
@@ -60,9 +60,9 @@ export const reducedSetProfile = (state=initialProfileState, action={}) => {
             return Object.assign({}, state, {
                 isLoading: false,
                 email: action.payload.email,
-                userName: action.payload.userName,
-                firstName: action.payload.firstName,
-                lastName: action.payload.lastName,
+                username: action.payload.username,
+                firstname: action.payload.firstname,
+                lastname: action.payload.lastname,
                 city: action.payload.city,
                 bio: action.payload.bio
             });
@@ -76,9 +76,9 @@ export const reducedSetProfile = (state=initialProfileState, action={}) => {
             return Object.assign({}, state, {
                 isRegistering: false,
                 email: action.payload.email,
-                userName: action.payload.userName,
-                firstName: action.payload.firstName,
-                lastName: action.payload.lastName,
+                username: action.payload.username,
+                firstname: action.payload.firstname,
+                lastname: action.payload.lastname,
                 city: action.payload.city,
                 bio: action.payload.bio
             });
@@ -91,9 +91,9 @@ export const reducedSetProfile = (state=initialProfileState, action={}) => {
         case REQUEST_EDIT_PROFILE_SUCCESS:
             return Object.assign({}, state, {
                 isEditing: false,
-                userName: action.payload.userName,
-                firstName: action.payload.firstName,
-                lastName: action.payload.lastName,
+                username: action.payload.username,
+                firstname: action.payload.firstname,
+                lastname: action.payload.lastname,
                 city: action.payload.city,
                 bio: action.payload.bio
             });

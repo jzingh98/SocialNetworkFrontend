@@ -14,7 +14,7 @@ class MyConnectionsList extends React.Component {
 
 
     retrieveConnections() {
-        callSearchConnections(this.props.currentProfile.userName)
+        callSearchConnections(this.props.currentProfile.username)
             .then(data => {
                 if (data) {
                     let newArray = [];
@@ -37,7 +37,7 @@ class MyConnectionsList extends React.Component {
         const listItems = this.state.listUsers.map((user) =>
             <MyConnectionsItem
                 key={user}
-                userName={user}
+                username={user}
             />
         );
 
