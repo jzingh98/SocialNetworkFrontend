@@ -24,7 +24,7 @@ class Connections extends React.Component {
             currentProfile
         } = this.props;
 
-        if(false){
+        if(!currentLoggedIn){
             return (
                 <h1>
                     Please log in to view connections

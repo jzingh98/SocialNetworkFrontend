@@ -1,16 +1,13 @@
 
 export function callCreateEvent(eventInfo) {
-    return fetch('http://localhost:3001/eventcreate/', {
+    console.log(eventInfo);
+    return fetch('http://localhost:3001/postcreate/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            name: eventInfo.name,
-            host: eventInfo.host,
-            invited: eventInfo.invited,
-            location: eventInfo.location,
-            time: eventInfo.time,
+            title: eventInfo.title,
             details: eventInfo.details,
-            duration: eventInfo.duration,
+            poster: eventInfo.poster,
         })
     })
         .then(response => response.json())
@@ -18,9 +15,8 @@ export function callCreateEvent(eventInfo) {
 
 
 export function callRetrieveEvents(username) {
-    console.log("XXXX");
     console.log(username);
-    return fetch('http://localhost:3001/eventretrieve/', {
+    return fetch('http://localhost:3001/postretrieve/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({

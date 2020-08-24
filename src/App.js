@@ -114,6 +114,8 @@ class App extends Component {
 
                     <Route path="/signin">
                         <div className="App">
+                            <h1> Welcome to MyJournal!</h1>
+                            <p> Please Sign In or Register to continue</p>
                             <Particles
                                 className='particles'
                                 params={particlesOptions}
@@ -129,6 +131,8 @@ class App extends Component {
 
                     <Route path="/register">
                         <div className="App">
+                            <h1> Welcome to MyJournal!</h1>
+                            <p> Please Sign In or Register to continue</p>
                             <Particles className='particles'
                                        params={particlesOptions}
                             />
@@ -198,7 +202,24 @@ class App extends Component {
 
                     } />
 
-
+                    <Route path="/">
+                        <div className="App">
+                            <h1> Welcome to MyJournal!</h1>
+                            <p> Please Sign In or Register to continue</p>
+                            <div className="App">
+                                <Particles
+                                    className='particles'
+                                    params={particlesOptions}
+                                />
+                                <Signin
+                                    onChangeLoggedIn={onChangeLoggedIn}
+                                    currentProfile={currentProfile}
+                                    onRequestLoadProfile={onRequestLoadProfile}
+                                    Link = {Link}
+                                />
+                            </div>
+                        </div>
+                    </Route>
 
                 </Switch>
             </Router>

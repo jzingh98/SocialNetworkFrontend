@@ -1,5 +1,4 @@
 import React from 'react';
-import {BrowserRouter as Router, Link, Route, Switch, Redirect} from "react-router-dom";
 
 
 
@@ -11,16 +10,19 @@ class EventsListItem extends React.Component {
 
     render() {
 
-        const { name } = this.props;
+        const { title, poster, details} = this.props;
 
         return (
-            <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-                <main className="pa4 black-80">
-                    <div className="measure">
+            <article className="center">
+                <main className="pa4 ">
+                    <div className="measure left--1">
 
-                        <div className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib">
-                            <p>{name}</p>
-                        </div>
+
+                        <h1>{title}</h1>
+                        <h3>{poster}</h3>
+                        <p>{details}</p>
+                        <p> </p>
+                        <p> --------------------------- </p>
 
                     </div>
                 </main>

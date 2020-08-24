@@ -21,13 +21,13 @@ class Events extends React.Component {
                 if (data) {
                     let newArray = [];
                     data.map(function(val, index){
-                        newArray.push(val.name);
+                        newArray.push({title: val.title, poster: val.poster, details: val.details});
                     });
                     this.setState({
                         listUsers: newArray,
                     })
                 } else {
-                    console.log("Failed to retrieve events");
+                    console.log("Failed to retrieve post");
                 }
             })
             .catch(error => console.log(error));
@@ -40,10 +40,10 @@ class Events extends React.Component {
         } = this.props;
 
 
-        if(false){
+        if(!currentLoggedIn){
             return (
                 <h1>
-                    Please log in to view events
+                    Please log in to view posts
                 </h1>
             )
         }
