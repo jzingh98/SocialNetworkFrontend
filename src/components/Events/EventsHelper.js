@@ -1,7 +1,7 @@
 
 export function callCreateEvent(eventInfo) {
     console.log(eventInfo);
-    return fetch('http://localhost:3001/postcreate/', {
+    return fetch('http:// 18.237.156.55:3001/postcreate/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -16,7 +16,7 @@ export function callCreateEvent(eventInfo) {
 
 export function callRetrieveEvents(username) {
     console.log(username);
-    return fetch('http://localhost:3001/postretrieve/', {
+    return fetch('http:// 18.237.156.55:3001/postretrieve/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
