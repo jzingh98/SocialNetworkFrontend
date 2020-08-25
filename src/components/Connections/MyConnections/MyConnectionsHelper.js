@@ -1,6 +1,6 @@
 
 export function callSearchConnections(username) {
-    return fetch('http://localhost:3001/searchconnections/', {
+    return fetch('34.214.0.26:3001/searchconnections/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
