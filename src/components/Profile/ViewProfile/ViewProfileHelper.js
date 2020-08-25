@@ -1,6 +1,6 @@
 
 export function callViewProfile(username) {
-    return fetch('34.216.100.238:3001/viewprofile/', {
+    return fetch('127.0.0.1:3001/viewprofile/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -12,7 +12,7 @@ export function callViewProfile(username) {
 
 
 export function callConnectionStatus(fromuser, touser) {
-    return fetch('34.216.100.238:3001/connectionstatus/', {
+    return fetch('127.0.0.1:3001/connectionstatus/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -25,7 +25,7 @@ export function callConnectionStatus(fromuser, touser) {
 
 
 export function callAddConnection(fromuser, touser) {
-    return fetch('34.216.100.238:3001/addconnection/', {
+    return fetch('127.0.0.1:3001/addconnection/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -40,7 +40,7 @@ export function callAddConnection(fromuser, touser) {
 
 
 export function callDeleteConnection(fromuser, touser) {
-    return fetch('34.216.100.238:3001/deleteconnection/', {
+    return fetch('127.0.0.1:3001/deleteconnection/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -54,7 +54,7 @@ export function callDeleteConnection(fromuser, touser) {
 
 
 export function callUpdateConnectionType(fromuser, touser, type) {
-    return fetch('34.216.100.238:3001/updateconnectiontype/', {
+    return fetch('127.0.0.1:3001/updateconnectiontype/', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
 
