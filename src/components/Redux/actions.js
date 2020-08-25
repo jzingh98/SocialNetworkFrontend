@@ -28,7 +28,7 @@ export const actionClearProfile = () => ({ type: CLEAR_PROFILE, payload: {} });
 export const requestLoadProfile = (email, password) => (dispatch) => {
     dispatch({ type: REQUEST_LOAD_PROFILE_PENDING });
 
-    fetch('127.0.0.1:3001/signin', {
+    fetch('http://localhost:3001/signin', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -51,7 +51,7 @@ export const requestLoadProfile = (email, password) => (dispatch) => {
 export const requestRegisterProfile = (profileInfo) => (dispatch) => {
     dispatch({ type: REQUEST_REGISTER_PROFILE_PENDING });
 
-    fetch('127.0.0.1:3001/register', {
+    fetch('http://localhost:3001/register', {
         method: 'post',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -79,7 +79,7 @@ export const requestRegisterProfile = (profileInfo) => (dispatch) => {
 export const requestEditProfile = (profileInfo) => (dispatch) => {
     dispatch({ type: REQUEST_EDIT_PROFILE_PENDING });
 
-    fetch('127.0.0.1:3001/editprofile', {
+    fetch('http://localhost:3001/editprofile', {
         method: 'put',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
